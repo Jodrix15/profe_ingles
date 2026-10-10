@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#2747c9">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Examen 1 · Nivel inicial</title>
+<title>Examen de nivel A1–B1</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
 /* Layout: una columna de examen; resultados con barras por tema al final */
@@ -56,6 +56,7 @@ input.bad{border-color:var(--bad);color:var(--bad);background:var(--bad-soft);te
 .result .big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .result .big b{font-family:var(--display);font-size:3rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .result .big span{font-size:1.1rem;color:var(--muted)}
+.result .big strong{color:var(--ink)}
 .result .verdict{font-weight:700;margin:8px 0 16px}
 .topics{display:grid;gap:10px}
 .topic{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;font-size:.95rem}
@@ -70,8 +71,8 @@ input.bad{border-color:var(--bad);color:var(--bad);background:var(--bad-soft);te
 <body>
 <div class="wrap">
   <a class="volver" href="./">‹ Todas las fichas</a>
-  <h1>Examen 1 · Nivel inicial</h1>
-  <p class="sub">30 preguntas sobre pronombres, posesivos y el verbo <i>do</i>. Responde todas y pulsa <b>Corregir examen</b> al final.</p>
+  <h1>Examen de nivel A1–B1</h1>
+  <p class="sub">30 preguntas de dificultad creciente. Si una pregunta no la sabes, déjala en blanco: es mejor que adivinar. Al final pulsa <b>Corregir examen</b>.</p>
   <main id="exam"></main>
   <div class="actions">
     <button class="btn" id="grade" type="button">Corregir examen</button>
@@ -81,46 +82,45 @@ input.bad{border-color:var(--bad);color:var(--bad);background:var(--bad-soft);te
 </div>
 
 <script>
-const TOPICS = {S:"Pronombres sujeto", O:"Pronombres objeto", P:"Adjetivos posesivos", PP:"Pronombres posesivos",
-  D:"Verbo to do", A:"Presente con do / does", B:"To be o do"};
-// t: tema · c: opciones (elegir) · a: respuestas válidas · long: escribir la frase entera
+const TOPICS = {A1:"Nivel A1", A2:"Nivel A2", B1:"Nivel B1"};
+// t: nivel · c: opciones (elegir) · a: respuestas válidas · long: escribir la frase entera
 const PARTS = [
- {title:"Parte 1 · Elige la opción correcta", qs:[
-  {t:"S", q:"___ is my brother.", c:["He","Him","His","Her"], a:"He"},
-  {t:"O", q:"I love ___. <span class=hint>(a ella)</span>", c:["she","her","hers","his"], a:"her"},
-  {t:"P", q:"We have a dog. ___ name is Toby.", c:["It","Its","It's","Their"], a:"Its"},
-  {t:"PP", q:"This book is ___. <span class=hint>(mío)</span>", c:["my","me","mine","I"], a:"mine"},
-  {t:"S", q:"___ live in Madrid. <span class=hint>(ellos)</span>", c:["Them","Their","They","Theirs"], a:"They"},
-  {t:"O", q:"Can you help ___? <span class=hint>(a nosotros)</span>", c:["we","us","our","ours"], a:"us"},
-  {t:"D", q:"She ___ her homework every day.", c:["do","does","is","don't"], a:"does"},
-  {t:"A", q:"___ you like pizza?", c:["Are","Does","Do","Is"], a:"Do"},
-  {t:"A", q:"He ___ like coffee.", c:["don't","isn't","doesn't","not"], a:"doesn't"},
-  {t:"B", q:"___ she a teacher?", c:["Does","Do","Is","Are"], a:"Is"},
-  {t:"B", q:"They ___ tired.", c:["do","are","does","is"], a:"are"},
-  {t:"PP", q:"That car isn't ours. It's ___.", c:["their","they","them","theirs"], a:"theirs"},
-  {t:"A", q:"___ he play football?", c:["Do","Is","Does","Are"], a:"Does"},
-  {t:"S", q:"Sara and ___ are friends.", c:["me","I","my","mine"], a:"I"},
-  {t:"P", q:"My parents love ___ house.", c:["they","them","their","theirs"], a:"their"}]},
- {title:"Parte 2 · Escribe la palabra que falta", qs:[
-  {t:"P", q:"Tom has a sister. ___ sister is ten.", a:["his"]},
-  {t:"O", q:"I don't know Anna. Do you know ___?", a:["her"]},
-  {t:"D", q:"My brother ___ exercise every morning. <span class=hint>(do)</span>", a:["does"]},
-  {t:"D", q:"We ___ do the dishes on Sunday. <span class=hint>(negativa)</span>", a:["don't"]},
-  {t:"A", q:"She ___ chocolate. <span class=hint>(like)</span>", a:["likes"]},
-  {t:"A", q:"___ they live in London?", a:["do"]},
-  {t:"PP", q:"Is this your pen or is it ___? <span class=hint>(de él)</span>", a:["his"]},
-  {t:"A", q:"Do you speak English? — Yes, I ___.", a:["do"]},
-  {t:"A", q:"Does she work here? — No, she ___.", a:["doesn't"]},
-  {t:"B", q:"___ you from Spain?", a:["are"]}]},
- {title:"Parte 3 · Escribe la frase completa", qs:[
-  {t:"A", long:true, q:"Pasa a negativa: <b>He plays tennis.</b>", a:["He doesn't play tennis"]},
-  {t:"A", long:true, q:"Pasa a pregunta: <b>She likes music.</b>", a:["Does she like music"]},
-  {t:"D", long:true, q:"Pasa a negativa: <b>They do their homework.</b>", a:["They don't do their homework"]},
-  {t:"A", long:true, q:"Corrige el error: <b>She don't like apples.</b>", a:["She doesn't like apples"]},
-  {t:"O", long:true, q:"Cambia los nombres por pronombres: <b>Maria gives the book to Peter.</b>", a:["She gives the book to him","She gives it to him"]}]}
+ {title:"Parte 1", qs:[
+  {t:"A1", q:"My name ___ Laura.", c:["is","am","are","be"], a:"is"},
+  {t:"A1", q:"___ you from Spain?", c:["Do","Are","Is","Am"], a:"Are"},
+  {t:"A1", q:"She ___ in London.", c:["live","lives","living","is live"], a:"lives"},
+  {t:"A1", q:"I ___ like fish.", c:["doesn't","not","don't","isn't"], a:"don't"},
+  {t:"A1", q:"There ___ two books on the table.", c:["is","are","be","has"], a:"are"},
+  {t:"A1", q:"This is ___ car. <span class=hint>(mío)</span>", c:["me","my","mine","I"], a:"my"},
+  {t:"A1", q:"___ can swim very well.", c:["Him","His","He","He's"], a:"He"},
+  {t:"A1", q:"Where ___ she work?", c:["do","is","does","are"], a:"does"},
+  {t:"A1", q:"I have two ___. <span class=hint>(brother)</span>", a:["brothers"]},
+  {t:"A1", q:"___ is your birthday? — In May.", a:["when"]}]},
+ {title:"Parte 2", qs:[
+  {t:"A2", q:"Yesterday I ___ to the cinema.", c:["go","went","gone","goes"], a:"went"},
+  {t:"A2", q:"___ you see the match last night?", c:["Do","Was","Did","Were"], a:"Did"},
+  {t:"A2", q:"Look! It ___.", c:["rains","is raining","rain","raining"], a:"is raining"},
+  {t:"A2", q:"My brother is ___ than me.", c:["tall","taller","tallest","more tall"], a:"taller"},
+  {t:"A2", q:"We ___ visit my grandparents next weekend.", c:["are going to","going to","go to","will to"], a:"are going to"},
+  {t:"A2", q:"You ___ smoke here. It's forbidden.", c:["mustn't","don't have to","can","should"], a:"mustn't"},
+  {t:"A2", q:"How ___ money do you have?", c:["many","much","lot","any"], a:"much"},
+  {t:"A2", q:"She was cooking when the phone ___.", c:["rang","rings","was ringing","ring"], a:"rang"},
+  {t:"A2", long:true, q:"Pasa a negativa: <b>They went to school yesterday.</b>", a:["They didn't go to school yesterday"]},
+  {t:"A2", long:true, q:"Pasa a pregunta: <b>She bought a new car.</b>", a:["Did she buy a new car"]}]},
+ {title:"Parte 3", qs:[
+  {t:"B1", q:"I ___ in Barcelona since 2015.", c:["live","am living","have lived","lived"], a:"have lived"},
+  {t:"B1", q:"Have you ever ___ to Paris?", c:["go","went","been","be"], a:"been"},
+  {t:"B1", q:"If it rains tomorrow, we ___ at home.", c:["stay","will stay","would stay","stayed"], a:"will stay"},
+  {t:"B1", q:"This house ___ in 1990.", c:["built","was built","is building","has build"], a:"was built"},
+  {t:"B1", q:"I'm used to ___ early.", c:["get up","getting up","got up","gets up"], a:"getting up"},
+  {t:"B1", q:"She told me that she ___ tired.", c:["are","was","be","been"], a:"was"},
+  {t:"B1", q:"This is the man ___ car was stolen.", c:["who","which","whose","that"], a:"whose"},
+  {t:"B1", q:"If I ___ rich, I would travel around the world.", c:["am","be","were","will be"], a:"were"},
+  {t:"B1", q:"I started working here two years ago. → I ___ here for two years.", a:["have worked","have been working","'ve worked","'ve been working"]},
+  {t:"B1", long:true, q:"Pasa a pasiva: <b>Someone stole my bike.</b>", a:["My bike was stolen"]}]}
 ];
 
-const norm = s => s.toLowerCase().replace(/[’`´]/g,"'").replace(/\bdo not\b/g,"don't").replace(/\bdoes not\b/g,"doesn't")
+const norm = s => s.toLowerCase().replace(/\bi have\b/g,"i've").replace(/\bhave\b(?= (worked|been))/g,"'ve").replace(/\bdid not\b/g,"didn't").replace(/[’`´]/g,"'").replace(/\bdo not\b/g,"don't").replace(/\bdoes not\b/g,"doesn't")
   .replace(/[.,!?¿¡]/g," ").replace(/\s+/g," ").trim();
 const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
 const exam = document.getElementById("exam"), result = document.getElementById("result");
@@ -171,19 +171,19 @@ function grade(){
     if (!right) body.insertAdjacentHTML("beforeend", `<span class="fix">→ ${esc(shown)}</span>`);
     per[item.t][1]++; if (right) { per[item.t][0]++; good++; }
   });
-  const nota = (good / all.length * 10).toFixed(1).replace(".", ",");
-  const verdict = good >= 27 ? ["Excelente: domina todo lo trabajado.","lvl-ok"]
-    : good >= 21 ? ["Buen nivel: repasar los temas en naranja o rojo.","lvl-ok"]
-    : good >= 15 ? ["En progreso: hay base, pero conviene reforzar varios temas.","lvl-mid"]
-    : ["Hay que repasar: volver a las fichas antes de avanzar.","lvl-bad"];
+  const pass = k => per[k][0] / per[k][1] >= .7;
+  const level = !pass("A1") ? ["Principiante (por debajo de A1)", "Empezar desde cero: to be, pronombres y presente simple."]
+    : !pass("A2") ? ["A1", "Consolidar A1 y empezar con el pasado simple y el presente continuo."]
+    : !pass("B1") ? ["A2", "Trabajar contenidos de B1: present perfect, condicionales y pasiva."]
+    : ["B1 o superior", "Domina hasta B1. Para afinar más haría falta una prueba de B2."];
   const rows = Object.entries(per).map(([k,[g,t]]) => {
-    const r = g / t, lvl = r >= .8 ? "ok" : r >= .5 ? "mid" : "bad";
-    const word = lvl === "ok" ? "Dominado" : lvl === "mid" ? "Repasar" : "Trabajar";
+    const r = g / t, lvl = r >= .7 ? "ok" : r >= .5 ? "mid" : "bad";
+    const word = r >= .7 ? "Superado" : "No superado";
     return `<div class="topic"><span>${TOPICS[k]} · <span class="lvl-${lvl}">${word}</span></span><span class="val">${g} / ${t}</span>
       <div class="bar"><i class="bg-${lvl}" style="width:${Math.round(r*100)}%"></i></div></div>`;
   }).join("");
-  result.innerHTML = `<div class="big"><b>${good} / ${all.length}</b><span>Nota: ${nota} sobre 10</span></div>
-    <p class="verdict ${verdict[1]}">${verdict[0]}</p><div class="topics">${rows}</div>`;
+  result.innerHTML = `<div class="big"><b>${good} / ${all.length}</b><span>Nivel estimado: <strong>${level[0]}</strong></span></div>
+    <p class="verdict">${level[1]}</p><div class="topics">${rows}</div>`;
   result.hidden = false;
   const still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   result.scrollIntoView({behavior: still ? "auto" : "smooth"});
