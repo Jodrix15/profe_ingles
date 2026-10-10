@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Inglés">
+<meta name="theme-color" content="#2747c9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Examen 1 · Nivel inicial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: una columna de examen; resultados con barras por tema al final */
+:root{
+  --paper:#fbfaf6; --sheet:#ffffff; --ink:#1d2433; --muted:#5e6678; --line:#dfe2ea;
+  --accent:#2747c9; --accent-soft:#e8ecfb; --ok:#1f7a4a; --ok-soft:#e3f3ea; --bad:#c42b2b; --bad-soft:#fbe7e6; --warn:#b26a00;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ef; --muted:#9aa2b4; --line:#2c3240;
+  --accent:#8ea2ff; --accent-soft:#232b4a; --ok:#5fd093; --ok-soft:#173326; --bad:#ff7d74; --bad-soft:#3a1d1d; --warn:#f0b35a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ef; --muted:#9aa2b4; --line:#2c3240;
+  --accent:#8ea2ff; --accent-soft:#232b4a; --ok:#5fd093; --ok-soft:#173326; --bad:#ff7d74; --bad-soft:#3a1d1d; --warn:#f0b35a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding:0 16px}
+.wrap{max-width:760px;margin:0 auto;padding-block:max(28px,env(safe-area-inset-top)) 64px}
+.volver{display:none;font-size:.95rem;color:var(--accent);text-decoration:none;margin-bottom:12px}
+@media (display-mode: standalone){.volver{display:inline-block}}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.1;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 24px}
+h2{font-family:var(--display);font-size:1.25rem;margin:32px 0 12px}
+.q{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:2.2em 1fr;gap:4px 8px}
+.q .n{font-family:var(--display);font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.q .body{min-width:0}
+.q .hint{color:var(--muted);font-style:italic;font-size:.95rem}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.opts button{font:inherit;font-size:.95rem;padding:4px 14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;cursor:pointer}
+.opts button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700}
+.opts button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opts.ok button[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.opts.bad button[aria-pressed="true"]{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opts.done button{cursor:default}
+input[type=text]{font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:2px solid var(--line);padding:0 4px;width:8ch;border-radius:0}
+input.long{display:block;width:100%;margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--paper)}
+input:focus{outline:none;border-color:var(--accent)}
+input.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+input.bad{border-color:var(--bad);color:var(--bad);background:var(--bad-soft);text-decoration:line-through;text-decoration-thickness:1px}
+.fix{display:block;color:var(--bad);font-size:.9rem;font-weight:700;margin-top:4px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{font:inherit;font-weight:700;padding:10px 20px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.result{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:24px;scroll-margin-top:16px}
+.result .big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.result .big b{font-family:var(--display);font-size:3rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.result .big span{font-size:1.1rem;color:var(--muted)}
+.result .verdict{font-weight:700;margin:8px 0 16px}
+.topics{display:grid;gap:10px}
+.topic{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;font-size:.95rem}
+.topic .bar{grid-column:1/-1;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.topic .bar i{display:block;height:100%;border-radius:4px}
+.topic .val{font-variant-numeric:tabular-nums;font-weight:700}
+.lvl-ok{color:var(--ok)} .lvl-mid{color:var(--warn)} .lvl-bad{color:var(--bad)}
+.bg-ok{background:var(--ok)} .bg-mid{background:var(--warn)} .bg-bad{background:var(--bad)}
+@media (prefers-reduced-motion:no-preference){.topic .bar i{transition:width .5s ease}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="volver" href="./">‹ Todas las fichas</a>
+  <h1>Examen 1 · Nivel inicial</h1>
+  <p class="sub">30 preguntas sobre pronombres, posesivos y el verbo <i>do</i>. Responde todas y pulsa <b>Corregir examen</b> al final.</p>
+  <main id="exam"></main>
+  <div class="actions">
+    <button class="btn" id="grade" type="button">Corregir examen</button>
+    <button class="btn ghost" id="reset" type="button">Repetir examen</button>
+  </div>
+  <section class="result" id="result" hidden aria-live="polite"></section>
+</div>
+
+<script>
+const TOPICS = {S:"Pronombres sujeto", O:"Pronombres objeto", P:"Adjetivos posesivos", PP:"Pronombres posesivos",
+  D:"Verbo to do", A:"Presente con do / does", B:"To be o do"};
+// t: tema · c: opciones (elegir) · a: respuestas válidas · long: escribir la frase entera
+const PARTS = [
+ {title:"Parte 1 · Elige la opción correcta", qs:[
+  {t:"S", q:"___ is my brother.", c:["He","Him","His","Her"], a:"He"},
+  {t:"O", q:"I love ___. <span class=hint>(a ella)</span>", c:["she","her","hers","his"], a:"her"},
+  {t:"P", q:"We have a dog. ___ name is Toby.", c:["It","Its","It's","Their"], a:"Its"},
+  {t:"PP", q:"This book is ___. <span class=hint>(mío)</span>", c:["my","me","mine","I"], a:"mine"},
+  {t:"S", q:"___ live in Madrid. <span class=hint>(ellos)</span>", c:["Them","Their","They","Theirs"], a:"They"},
+  {t:"O", q:"Can you help ___? <span class=hint>(a nosotros)</span>", c:["we","us","our","ours"], a:"us"},
+  {t:"D", q:"She ___ her homework every day.", c:["do","does","is","don't"], a:"does"},
+  {t:"A", q:"___ you like pizza?", c:["Are","Does","Do","Is"], a:"Do"},
+  {t:"A", q:"He ___ like coffee.", c:["don't","isn't","doesn't","not"], a:"doesn't"},
+  {t:"B", q:"___ she a teacher?", c:["Does","Do","Is","Are"], a:"Is"},
+  {t:"B", q:"They ___ tired.", c:["do","are","does","is"], a:"are"},
+  {t:"PP", q:"That car isn't ours. It's ___.", c:["their","they","them","theirs"], a:"theirs"},
+  {t:"A", q:"___ he play football?", c:["Do","Is","Does","Are"], a:"Does"},
+  {t:"S", q:"Sara and ___ are friends.", c:["me","I","my","mine"], a:"I"},
+  {t:"P", q:"My parents love ___ house.", c:["they","them","their","theirs"], a:"their"}]},
+ {title:"Parte 2 · Escribe la palabra que falta", qs:[
+  {t:"P", q:"Tom has a sister. ___ sister is ten.", a:["his"]},
+  {t:"O", q:"I don't know Anna. Do you know ___?", a:["her"]},
+  {t:"D", q:"My brother ___ exercise every morning. <span class=hint>(do)</span>", a:["does"]},
+  {t:"D", q:"We ___ do the dishes on Sunday. <span class=hint>(negativa)</span>", a:["don't"]},
+  {t:"A", q:"She ___ chocolate. <span class=hint>(like)</span>", a:["likes"]},
+  {t:"A", q:"___ they live in London?", a:["do"]},
+  {t:"PP", q:"Is this your pen or is it ___? <span class=hint>(de él)</span>", a:["his"]},
+  {t:"A", q:"Do you speak English? — Yes, I ___.", a:["do"]},
+  {t:"A", q:"Does she work here? — No, she ___.", a:["doesn't"]},
+  {t:"B", q:"___ you from Spain?", a:["are"]}]},
+ {title:"Parte 3 · Escribe la frase completa", qs:[
+  {t:"A", long:true, q:"Pasa a negativa: <b>He plays tennis.</b>", a:["He doesn't play tennis"]},
+  {t:"A", long:true, q:"Pasa a pregunta: <b>She likes music.</b>", a:["Does she like music"]},
+  {t:"D", long:true, q:"Pasa a negativa: <b>They do their homework.</b>", a:["They don't do their homework"]},
+  {t:"A", long:true, q:"Corrige el error: <b>She don't like apples.</b>", a:["She doesn't like apples"]},
+  {t:"O", long:true, q:"Cambia los nombres por pronombres: <b>Maria gives the book to Peter.</b>", a:["She gives the book to him","She gives it to him"]}]}
+];
+
+const norm = s => s.toLowerCase().replace(/[’`´]/g,"'").replace(/\bdo not\b/g,"don't").replace(/\bdoes not\b/g,"doesn't")
+  .replace(/[.,!?¿¡]/g," ").replace(/\s+/g," ").trim();
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const exam = document.getElementById("exam"), result = document.getElementById("result");
+const all = []; let n = 0;
+
+PARTS.forEach(part => {
+  exam.insertAdjacentHTML("beforeend", `<h2>${part.title}</h2>`);
+  part.qs.forEach(item => {
+    n++;
+    const box = document.createElement("div"); box.className = "q";
+    const id = "q" + n;
+    let html = `<span class="n">${n}.</span><div class="body">`;
+    if (item.c) {
+      html += `<div>${item.q}</div><div class="opts" role="group" aria-label="Pregunta ${n}">` +
+        item.c.map(o => `<button type="button" aria-pressed="false">${esc(o)}</button>`).join("") + `</div>`;
+    } else if (item.long) {
+      html += `<label for="${id}">${item.q}</label><input class="long" type="text" id="${id}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+    } else {
+      html += `<div>${item.q.replace("___", `<input type="text" id="${id}" aria-label="Respuesta ${n}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`)}</div>`;
+    }
+    box.innerHTML = html + `</div>`;
+    const body = box.querySelector(".body");
+    const opts = box.querySelector(".opts");
+    if (opts) opts.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b || opts.classList.contains("done")) return;
+      opts.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    });
+    all.push({item, box, body, opts, input: box.querySelector("input")});
+    exam.append(box);
+  });
+});
+
+function grade(){
+  clearMarks();
+  const per = {}; let good = 0;
+  Object.keys(TOPICS).forEach(k => per[k] = [0,0]);
+  all.forEach(({item, body, opts, input}) => {
+    let right, shown;
+    if (opts) {
+      const p = opts.querySelector('[aria-pressed="true"]');
+      right = !!p && p.textContent === item.a; shown = item.a;
+      opts.classList.add("done", right ? "ok" : "bad");
+    } else {
+      right = item.a.some(a => norm(a) === norm(input.value));
+      shown = item.a[0] + (item.long ? (/^(do|does|is|are)\b/i.test(item.a[0]) ? "?" : ".") : "");
+      input.classList.add(right ? "ok" : "bad"); input.readOnly = true;
+    }
+    if (!right) body.insertAdjacentHTML("beforeend", `<span class="fix">→ ${esc(shown)}</span>`);
+    per[item.t][1]++; if (right) { per[item.t][0]++; good++; }
+  });
+  const nota = (good / all.length * 10).toFixed(1).replace(".", ",");
+  const verdict = good >= 27 ? ["Excelente: domina todo lo trabajado.","lvl-ok"]
+    : good >= 21 ? ["Buen nivel: repasar los temas en naranja o rojo.","lvl-ok"]
+    : good >= 15 ? ["En progreso: hay base, pero conviene reforzar varios temas.","lvl-mid"]
+    : ["Hay que repasar: volver a las fichas antes de avanzar.","lvl-bad"];
+  const rows = Object.entries(per).map(([k,[g,t]]) => {
+    const r = g / t, lvl = r >= .8 ? "ok" : r >= .5 ? "mid" : "bad";
+    const word = lvl === "ok" ? "Dominado" : lvl === "mid" ? "Repasar" : "Trabajar";
+    return `<div class="topic"><span>${TOPICS[k]} · <span class="lvl-${lvl}">${word}</span></span><span class="val">${g} / ${t}</span>
+      <div class="bar"><i class="bg-${lvl}" style="width:${Math.round(r*100)}%"></i></div></div>`;
+  }).join("");
+  result.innerHTML = `<div class="big"><b>${good} / ${all.length}</b><span>Nota: ${nota} sobre 10</span></div>
+    <p class="verdict ${verdict[1]}">${verdict[0]}</p><div class="topics">${rows}</div>`;
+  result.hidden = false;
+  const still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  result.scrollIntoView({behavior: still ? "auto" : "smooth"});
+}
+function clearMarks(){
+  document.querySelectorAll(".fix").forEach(f => f.remove());
+  all.forEach(({opts, input}) => {
+    if (opts) opts.classList.remove("done","ok","bad");
+    else { input.classList.remove("ok","bad"); input.readOnly = false; }
+  });
+}
+function reset(){
+  clearMarks();
+  all.forEach(({opts, input}) => opts ? opts.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed","false")) : input.value = "");
+  result.hidden = true; window.scrollTo(0,0);
+}
+document.getElementById("grade").onclick = grade;
+document.getElementById("reset").onclick = reset;
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>
