@@ -28,6 +28,10 @@ a:hover,a:focus-visible{border-color:var(--accent);outline:none}
 a b{font-weight:700}
 a span{color:var(--muted);font-size:.9rem}
 a::after{content:"›";color:var(--accent);font-size:1.6rem;line-height:1}
+.refrescar{display:none;position:fixed;z-index:20;top:calc(env(safe-area-inset-top, 0px) + 10px);right:calc(env(safe-area-inset-right, 0px) + 12px);
+  font:inherit;font-size:.9rem;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);color:var(--accent);cursor:pointer}
+.refrescar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (display-mode: standalone){.refrescar{display:block}}
 </style>
 </head>
 <body>
@@ -40,5 +44,6 @@ a::after{content:"›";color:var(--accent);font-size:1.6rem;line-height:1}
   </ul>
 </div>
 <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});</script>
+<button class="refrescar" type="button" onclick="location.reload()" aria-label="Actualizar la página">↻ Actualizar</button>
 </body>
 </html>
