@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ficha 1 · Pronombres y do</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: cuaderno de ejercicios, una columna de lectura, corrección en "boli rojo" */
+:root{
+  --paper:#fbfaf6; --sheet:#ffffff; --ink:#1d2433; --muted:#5e6678; --line:#dfe2ea;
+  --accent:#2747c9; --accent-soft:#e8ecfb; --ok:#1f7a4a; --ok-soft:#e3f3ea; --bad:#c42b2b; --bad-soft:#fbe7e6;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ef; --muted:#9aa2b4; --line:#2c3240;
+  --accent:#8ea2ff; --accent-soft:#232b4a; --ok:#5fd093; --ok-soft:#173326; --bad:#ff7d74; --bad-soft:#3a1d1d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ef; --muted:#9aa2b4; --line:#2c3240;
+  --accent:#8ea2ff; --accent-soft:#232b4a; --ok:#5fd093; --ok-soft:#173326; --bad:#ff7d74; --bad-soft:#3a1d1d; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding:0 16px}
+.wrap{max-width:760px;margin:0 auto;padding-block:28px 64px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.1;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0}
+.score{font-family:var(--display);font-variant-numeric:tabular-nums;background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:8px 14px;text-align:right}
+.score b{font-size:1.5rem;color:var(--accent)}
+.score small{display:block;color:var(--muted);font-family:var(--body);font-size:.8rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);display:flex;gap:6px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:22px}
+nav a{font-size:.88rem;text-decoration:none;color:var(--ink);padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--sheet)}
+nav a:hover,nav a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+h2{font-family:var(--display);font-weight:700;font-size:1.35rem;margin:36px 0 12px;scroll-margin-top:70px}
+h2 span{color:var(--accent)}
+.ex{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;margin-bottom:16px}
+.ex h3{font-size:1rem;margin:0 0 12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ex h3 .res{font-variant-numeric:tabular-nums;font-weight:700}
+.res.good{color:var(--ok)} .res.mid{color:var(--accent)} .res.low{color:var(--bad)}
+ol{margin:0;padding-left:1.6em;display:grid;gap:10px}
+li{padding-left:4px}
+li .src{color:var(--muted);font-style:italic;display:block;font-size:.95rem}
+input[type=text]{font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:2px solid var(--line);padding:0 4px;min-width:5ch;width:7ch;border-radius:0}
+input.long{display:block;width:100%;margin-top:4px;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--paper)}
+input:focus{outline:none;border-color:var(--accent)}
+input.ok{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+input.bad{border-color:var(--bad);color:var(--bad);background:var(--bad-soft);text-decoration:line-through;text-decoration-thickness:1px}
+.choice{display:inline-flex;flex-wrap:wrap;gap:4px;vertical-align:baseline}
+.tip p{margin:10px 0 0}
+.tbl{overflow-x:auto}
+.tip table{border-collapse:collapse;width:100%;font-size:.92rem}
+.tip th,.tip td{text-align:left;padding:4px 10px;border-bottom:1px solid var(--line)}
+.tip th{font-weight:700;color:var(--accent)}
+.choice button{font:inherit;font-size:.95rem;padding:1px 9px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;cursor:pointer}
+.choice button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:700}
+.choice button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.choice.ok button[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.choice.bad button[aria-pressed="true"]{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.fix{color:var(--bad);font-size:.9rem;font-weight:700;margin-left:6px}
+.fix.block{display:block;margin:4px 0 0}
+.actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{font:inherit;font-size:.92rem;font-weight:700;padding:7px 16px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--sheet);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.tip{background:var(--accent-soft);border-radius:10px;padding:12px 16px;font-size:.95rem;margin-bottom:16px}
+footer{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+@media (prefers-reduced-motion:no-preference){input,.choice button{transition:background .15s,border-color .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Ficha 1 · Pronombres y <i>do</i></h1>
+      <p class="sub">Escribe las respuestas y pulsa <b>Corregir</b>. Los fallos salen en rojo con la solución al lado.</p>
+    </div>
+    <div class="score" aria-live="polite"><b id="total">0 / 0</b><small>aciertos corregidos</small></div>
+  </header>
+  <nav id="nav" aria-label="Secciones"><a href="#sujeto">Pronombres sujeto</a><a href="#objeto">Pronombres objeto</a><a href="#posesivos">Adjetivos posesivos</a><a href="#pronombres2">Pronombres · nivel 2</a><a href="#todo">El verbo to do</a><a href="#ayudante">Do como ayudante</a></nav>
+  <main id="app"><h2 id="sujeto">Pronombres sujeto</h2><section class="ex"><h3><span>1.1 Sustituye lo marcado por un pronombre</span><span class="res" aria-live="polite"></span></h3><ol><li><input type="text" id="g1" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> is a teacher. <span class="src">(Maria)</span></li><li><input type="text" id="g2" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> are friends. <span class="src">(Tom and I)</span></li><li><input type="text" id="g3" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> is black. <span class="src">(The dog)</span></li><li><input type="text" id="g4" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> lives in Madrid. <span class="src">(Peter)</span></li><li><input type="text" id="g5" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> work in a bank. <span class="src">(My parents)</span></li><li><input type="text" id="g6" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> is on the table. <span class="src">(The book)</span></li><li><input type="text" id="g7" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> are students. <span class="src">(You and Sara)</span></li><li><input type="text" id="g8" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> like music. <span class="src">(Anna and Laura)</span></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>1.2 Traduce el pronombre</span><span class="res" aria-live="polite"></span></h3><ol><li>(Yo) <input type="text" id="g9" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> am happy.</li><li>(Ella) <input type="text" id="g10" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> is tired.</li><li>(Nosotros) <input type="text" id="g11" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> are at home.</li><li>(Ellos) <input type="text" id="g12" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> are from Spain.</li><li>(Él) <input type="text" id="g13" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> is my brother.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><h2 id="objeto">Pronombres objeto</h2><section class="ex"><h3><span>2.1 Completa con el pronombre objeto</span><span class="res" aria-live="polite"></span></h3><ol><li>I love Anna. I love <input type="text" id="g14" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;">.</li><li>This is Mark. Do you know <input type="text" id="g15" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;">?</li><li>Where are my keys? I can't find <input type="text" id="g16" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">.</li><li>We are here. Look at <input type="text" id="g17" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;">!</li><li>I'm hungry. Can you help <input type="text" id="g18" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;">?</li><li>That's my cat. I play with <input type="text" id="g19" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> every day.</li><li>Tom and Lucy are nice. I like <input type="text" id="g20" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">.</li><li>You are my friend. I talk to <input type="text" id="g21" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> every day.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>2.2 ¿Sujeto u objeto? Elige</span><span class="res" aria-live="polite"></span></h3><ol><li><span class="choice" role="group" id="g22" data-i="0"><button type="button" aria-pressed="false">She</button><button type="button" aria-pressed="false">Her</button></span> is my sister.</li><li>I call <span class="choice" role="group" id="g23" data-i="0"><button type="button" aria-pressed="false">she</button><button type="button" aria-pressed="false">her</button></span> every day.</li><li><span class="choice" role="group" id="g24" data-i="0"><button type="button" aria-pressed="false">They</button><button type="button" aria-pressed="false">Them</button></span> live in London.</li><li>Can you help <span class="choice" role="group" id="g25" data-i="0"><button type="button" aria-pressed="false">we</button><button type="button" aria-pressed="false">us</button></span>?</li><li><span class="choice" role="group" id="g26" data-i="0"><button type="button" aria-pressed="false">He</button><button type="button" aria-pressed="false">Him</button></span> likes football.</li><li>Give the book to <span class="choice" role="group" id="g27" data-i="0"><button type="button" aria-pressed="false">I</button><button type="button" aria-pressed="false">me</button></span>.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><h2 id="posesivos">Adjetivos posesivos</h2><section class="ex"><h3><span>3.1 Completa con el posesivo</span><span class="res" aria-live="polite"></span></h3><ol><li>I have a car. <input type="text" id="g28" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> car is red.</li><li>She has a brother. <input type="text" id="g29" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> brother is 10.</li><li>He has a dog. <input type="text" id="g30" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> dog is big.</li><li>We have a house. <input type="text" id="g31" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> house is small.</li><li>They have two children. <input type="text" id="g32" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> children are at school.</li><li>You have a phone. Is this <input type="text" id="g33" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> phone?</li><li>The cat is hungry. <input type="text" id="g34" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> food is in the kitchen.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>3.2 Sujeto, objeto o posesivo: elige</span><span class="res" aria-live="polite"></span></h3><ol><li>This is Laura. <span class="choice" role="group" id="g35" data-i="0"><button type="button" aria-pressed="false">She</button><button type="button" aria-pressed="false">Her</button></span> is <span class="choice" role="group" id="g36" data-i="1"><button type="button" aria-pressed="false">my</button><button type="button" aria-pressed="false">me</button></span> friend.</li><li>I know Peter, but I don't know <span class="choice" role="group" id="g37" data-i="0"><button type="button" aria-pressed="false">his</button><button type="button" aria-pressed="false">him</button></span> sister.</li><li><span class="choice" role="group" id="g38" data-i="0"><button type="button" aria-pressed="false">We</button><button type="button" aria-pressed="false">Our</button></span> teacher is very nice. We like <span class="choice" role="group" id="g39" data-i="1"><button type="button" aria-pressed="false">she</button><button type="button" aria-pressed="false">her</button></span>.</li><li>They live with <span class="choice" role="group" id="g40" data-i="0"><button type="button" aria-pressed="false">their</button><button type="button" aria-pressed="false">them</button></span> parents.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><h2 id="pronombres2">Pronombres · nivel 2</h2><section class="ex"><h3><span>7.1 Elige la opción correcta</span><span class="res" aria-live="polite"></span></h3><ol><li>That car isn't ours. It's <span class="choice" role="group" id="g41" data-i="0"><button type="button" aria-pressed="false">they</button><button type="button" aria-pressed="false">them</button><button type="button" aria-pressed="false">their</button><button type="button" aria-pressed="false">theirs</button></span>.</li><li>Can you give <span class="choice" role="group" id="g42" data-i="0"><button type="button" aria-pressed="false">I</button><button type="button" aria-pressed="false">me</button><button type="button" aria-pressed="false">my</button><button type="button" aria-pressed="false">mine</button></span> the keys, please?</li><li><span class="choice" role="group" id="g43" data-i="0"><button type="button" aria-pressed="false">We</button><button type="button" aria-pressed="false">Us</button><button type="button" aria-pressed="false">Our</button><button type="button" aria-pressed="false">Ours</button></span> house is bigger than <span class="choice" role="group" id="g44" data-i="1"><button type="button" aria-pressed="false">they</button><button type="button" aria-pressed="false">them</button><button type="button" aria-pressed="false">their</button><button type="button" aria-pressed="false">theirs</button></span>.</li><li>Sara lost <span class="choice" role="group" id="g45" data-i="0"><button type="button" aria-pressed="false">she</button><button type="button" aria-pressed="false">her</button><button type="button" aria-pressed="false">hers</button><button type="button" aria-pressed="false">his</button></span> phone. Is this one <span class="choice" role="group" id="g46" data-i="1"><button type="button" aria-pressed="false">she</button><button type="button" aria-pressed="false">her</button><button type="button" aria-pressed="false">hers</button><button type="button" aria-pressed="false">its</button></span>?</li><li>My brother and <span class="choice" role="group" id="g47" data-i="0"><button type="button" aria-pressed="false">I</button><button type="button" aria-pressed="false">me</button><button type="button" aria-pressed="false">my</button><button type="button" aria-pressed="false">mine</button></span> go to the same school.</li><li>This isn't your coffee. <span class="choice" role="group" id="g48" data-i="0"><button type="button" aria-pressed="false">You</button><button type="button" aria-pressed="false">Your</button><button type="button" aria-pressed="false">Yours</button><button type="button" aria-pressed="false">It's</button></span> is on the table.</li><li>The dog is eating <span class="choice" role="group" id="g49" data-i="0"><button type="button" aria-pressed="false">it</button><button type="button" aria-pressed="false">its</button><button type="button" aria-pressed="false">it's</button><button type="button" aria-pressed="false">their</button></span> food.</li><li>Please call <span class="choice" role="group" id="g50" data-i="0"><button type="button" aria-pressed="false">we</button><button type="button" aria-pressed="false">us</button><button type="button" aria-pressed="false">our</button><button type="button" aria-pressed="false">ours</button></span> tomorrow.</li><li>Whose book is this? Is it <span class="choice" role="group" id="g51" data-i="0"><button type="button" aria-pressed="false">he</button><button type="button" aria-pressed="false">him</button><button type="button" aria-pressed="false">his</button><button type="button" aria-pressed="false">he's</button></span>?</li><li><span class="choice" role="group" id="g52" data-i="0"><button type="button" aria-pressed="false">They</button><button type="button" aria-pressed="false">Them</button><button type="button" aria-pressed="false">Their</button><button type="button" aria-pressed="false">Theirs</button></span> don't like <span class="choice" role="group" id="g53" data-i="1"><button type="button" aria-pressed="false">we</button><button type="button" aria-pressed="false">us</button><button type="button" aria-pressed="false">our</button><button type="button" aria-pressed="false">ours</button></span> music.</li><li>I like your shoes, but I prefer <span class="choice" role="group" id="g54" data-i="0"><button type="button" aria-pressed="false">I</button><button type="button" aria-pressed="false">me</button><button type="button" aria-pressed="false">my</button><button type="button" aria-pressed="false">mine</button></span>.</li><li>This message is for you and <span class="choice" role="group" id="g55" data-i="0"><button type="button" aria-pressed="false">I</button><button type="button" aria-pressed="false">me</button><button type="button" aria-pressed="false">my</button><button type="button" aria-pressed="false">mine</button></span>.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>7.2 Escribe el pronombre (sin opciones)</span><span class="res" aria-live="polite"></span></h3><ol><li>Peter is my friend. I see <input type="text" id="g56" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> every day, and <input type="text" id="g57" data-i="1" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> sister is my friend too.</li><li>These aren't my keys. <input type="text" id="g58" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> are in my bag.</li><li>Anna and I are cousins. <input type="text" id="g59" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> mothers are sisters.</li><li>Is this your jacket or is it <input type="text" id="g60" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">? <span class="src">(de ella)</span></li><li>The children are in the park. Can you see <input type="text" id="g61" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">?</li><li>We love our new flat. The flat is <input type="text" id="g62" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">.</li><li>My parents sold <input type="text" id="g63" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> car, so the car isn't <input type="text" id="g64" data-i="1" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 8ch;"> anymore.</li><li>Tom, is this phone <input type="text" id="g65" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;">? — Yes, it's <input type="text" id="g66" data-i="1" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">.</li><li>Lucy has a cat. <input type="text" id="g67" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> name is Max. Lucy loves <input type="text" id="g68" data-i="1" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;">.</li><li>I don't know <input type="text" id="g69" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> <span class="src">(a ellos)</span>, but I know <input type="text" id="g70" data-i="1" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> son.</li><li>John and Mary live next to us. <input type="text" id="g71" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> house is small, but <input type="text" id="g72" data-i="1" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> is big.</li><li>Excuse me, is this seat <input type="text" id="g73" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;">? <span class="src">(de vosotros)</span></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>7.3 Reescribe con pronombre posesivo</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g74">This is my book. → This book is…</label><input class="long" type="text" id="g74" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g75">That is her bag. → That bag is…</label><input class="long" type="text" id="g75" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g76">These are our tickets. → These tickets are…</label><input class="long" type="text" id="g76" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g77">Is this your car? → Is this car…?</label><input class="long" type="text" id="g77" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g78">Those are their dogs. → Those dogs are…</label><input class="long" type="text" id="g78" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g79">This is his phone. → This phone is…</label><input class="long" type="text" id="g79" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>7.4 Escribe la frase sustituyendo nombres por pronombres</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g80">Maria gives the book to Tom.</label><input class="long" type="text" id="g80" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g81">My friends and I visit Laura's parents.</label><input class="long" type="text" id="g81" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g82">Peter loves Anna's cat.</label><input class="long" type="text" id="g82" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g83">The teacher talks to the students.</label><input class="long" type="text" id="g83" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g84">This is John's house, not Sara's house.</label><input class="long" type="text" id="g84" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><h2 id="todo">El verbo <span>to do</span></h2><section class="ex"><h3><span>5.1 Completa con do o does</span><span class="res" aria-live="polite"></span></h3><ol><li>I <input type="text" id="g85" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> my homework every day.</li><li>She <input type="text" id="g86" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> yoga on Mondays.</li><li>We <input type="text" id="g87" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> the shopping on Saturday.</li><li>He <input type="text" id="g88" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> the dishes after dinner.</li><li>They <input type="text" id="g89" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> sport at school.</li><li>My mother <input type="text" id="g90" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> exercise in the morning.</li><li>You <input type="text" id="g91" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> a lot of work.</li><li>The children <input type="text" id="g92" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> their homework in the evening.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>5.2 Completa con don't o doesn't</span><span class="res" aria-live="polite"></span></h3><ol><li>I <input type="text" id="g93" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> do sport.</li><li>He <input type="text" id="g94" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 9ch;"> do his homework.</li><li>We <input type="text" id="g95" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> do the dishes on Sunday.</li><li>She <input type="text" id="g96" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 9ch;"> do yoga.</li><li>They <input type="text" id="g97" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> do the shopping.</li><li>My brother <input type="text" id="g98" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 9ch;"> do exercise.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>5.3 Pasa a negativa</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g99">I do my homework.</label><input class="long" type="text" id="g99" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g100">She does the shopping.</label><input class="long" type="text" id="g100" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g101">They do sport.</label><input class="long" type="text" id="g101" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g102">He does the dishes.</label><input class="long" type="text" id="g102" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g103">We do yoga.</label><input class="long" type="text" id="g103" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>5.4 Pasa a pregunta</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g104">You do your homework.</label><input class="long" type="text" id="g104" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g105">He does exercise.</label><input class="long" type="text" id="g105" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g106">They do the shopping.</label><input class="long" type="text" id="g106" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g107">She does yoga.</label><input class="long" type="text" id="g107" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g108">We do the dishes.</label><input class="long" type="text" id="g108" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>5.5 Respuesta corta</span><span class="res" aria-live="polite"></span></h3><ol><li>Do you do sport? → Yes, <input type="text" id="g109" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">.</li><li>Does she do her homework? → No, <input type="text" id="g110" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 13ch;">.</li><li>Do they do the shopping? → Yes, <input type="text" id="g111" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 9ch;">.</li><li>Does he do yoga? → No, <input type="text" id="g112" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 12ch;">.</li><li>Do we do a test today? → Yes, <input type="text" id="g113" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;">.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>5.6 Corrige el error</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g114">She don't do her homework.</label><input class="long" type="text" id="g114" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g115">Does he does sport?</label><input class="long" type="text" id="g115" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g116">I doesn't do the dishes.</label><input class="long" type="text" id="g116" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g117">Do she do yoga?</label><input class="long" type="text" id="g117" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g118">They does the shopping.</label><input class="long" type="text" id="g118" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><h2 id="ayudante"><span>Do</span> como ayudante</h2><section class="ex"><h3><span>6.1 Escribe el verbo en la forma correcta</span><span class="res" aria-live="polite"></span></h3><ol><li>She <input type="text" id="g119" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> chocolate. <span class="src">(like)</span></li><li>I <input type="text" id="g120" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> football. <span class="src">(play)</span></li><li>He <input type="text" id="g121" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 7ch;"> in an office. <span class="src">(work)</span></li><li>We <input type="text" id="g122" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> in Barcelona. <span class="src">(live)</span></li><li>My sister <input type="text" id="g123" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 8ch;"> French. <span class="src">(speak)</span></li><li>They <input type="text" id="g124" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> fish on Fridays. <span class="src">(eat)</span></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>6.2 Pasa a negativa</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g125">I like apples.</label><input class="long" type="text" id="g125" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g126">She likes coffee.</label><input class="long" type="text" id="g126" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g127">They play tennis.</label><input class="long" type="text" id="g127" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g128">He works on Sundays.</label><input class="long" type="text" id="g128" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g129">We watch TV.</label><input class="long" type="text" id="g129" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g130">My father drives a car.</label><input class="long" type="text" id="g130" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>6.3 Pasa a pregunta</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g131">You like pizza.</label><input class="long" type="text" id="g131" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g132">He speaks English.</label><input class="long" type="text" id="g132" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g133">They live in Madrid.</label><input class="long" type="text" id="g133" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g134">She plays the guitar.</label><input class="long" type="text" id="g134" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g135">You work here.</label><input class="long" type="text" id="g135" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>6.4 Respuesta corta</span><span class="res" aria-live="polite"></span></h3><ol><li>Do you like dogs? → Yes, <input type="text" id="g136" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;">.</li><li>Does he play football? → No, <input type="text" id="g137" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 12ch;">.</li><li>Does she speak Italian? → Yes, <input type="text" id="g138" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 10ch;">.</li><li>Do they eat meat? → No, <input type="text" id="g139" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 12ch;">.</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>6.5 Corrige el error</span><span class="res" aria-live="polite"></span></h3><ol><li><label for="g140">I not like milk.</label><input class="long" type="text" id="g140" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g141">She doesn't likes tea.</label><input class="long" type="text" id="g141" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g142">Do he work here?</label><input class="long" type="text" id="g142" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g143">Does she plays tennis?</label><input class="long" type="text" id="g143" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g144">Like you music?</label><input class="long" type="text" id="g144" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li><li><label for="g145">He don't speak English.</label><input class="long" type="text" id="g145" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section><section class="ex"><h3><span>6.6 ¿Do / Does o Am / Is / Are?</span><span class="res" aria-live="polite"></span></h3><ol><li><input type="text" id="g146" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> you like music?</li><li><input type="text" id="g147" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> you tired?</li><li><input type="text" id="g148" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> she a teacher?</li><li><input type="text" id="g149" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 6ch;"> she work in a school?</li><li><input type="text" id="g150" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> they from Spain?</li><li><input type="text" id="g151" data-i="0" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width: 5ch;"> they live in Spain?</li></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div></section></main>
+  <footer>
+    <button class="btn" id="checkAll" type="button">Corregir todo</button>
+    <button class="btn ghost" id="resetAll" type="button">Borrar todo</button>
+  </footer>
+</div>
+
+<script>
+// ___ = hueco de texto · {a|b} = elegir opción · type:"long" = escribir la frase entera
+const SECTIONS = [
+ {id:"sujeto", title:"Pronombres sujeto", ex:[
+  {t:"1.1 Sustituye lo marcado por un pronombre", items:[
+   ["___ is a teacher. <span class=src>(Maria)</span>",[["she"]]],
+   ["___ are friends. <span class=src>(Tom and I)</span>",[["we"]]],
+   ["___ is black. <span class=src>(The dog)</span>",[["it"]]],
+   ["___ lives in Madrid. <span class=src>(Peter)</span>",[["he"]]],
+   ["___ work in a bank. <span class=src>(My parents)</span>",[["they"]]],
+   ["___ is on the table. <span class=src>(The book)</span>",[["it"]]],
+   ["___ are students. <span class=src>(You and Sara)</span>",[["you"]]],
+   ["___ like music. <span class=src>(Anna and Laura)</span>",[["they"]]]]},
+  {t:"1.2 Traduce el pronombre", items:[
+   ["(Yo) ___ am happy.",[["i"]]],["(Ella) ___ is tired.",[["she"]]],["(Nosotros) ___ are at home.",[["we"]]],
+   ["(Ellos) ___ are from Spain.",[["they"]]],["(Él) ___ is my brother.",[["he"]]]]}]},
+ {id:"objeto", title:"Pronombres objeto", ex:[
+  {t:"2.1 Completa con el pronombre objeto", items:[
+   ["I love Anna. I love ___.",[["her"]]],["This is Mark. Do you know ___?",[["him"]]],
+   ["Where are my keys? I can't find ___.",[["them"]]],["We are here. Look at ___!",[["us"]]],
+   ["I'm hungry. Can you help ___?",[["me"]]],["That's my cat. I play with ___ every day.",[["it"]]],
+   ["Tom and Lucy are nice. I like ___.",[["them"]]],["You are my friend. I talk to ___ every day.",[["you"]]]]},
+  {t:"2.2 ¿Sujeto u objeto? Elige", items:[
+   ["{She|Her} is my sister.",["She"]],["I call {she|her} every day.",["her"]],["{They|Them} live in London.",["They"]],
+   ["Can you help {we|us}?",["us"]],["{He|Him} likes football.",["He"]],["Give the book to {I|me}.",["me"]]]}]},
+ {id:"posesivos", title:"Adjetivos posesivos", ex:[
+  {t:"3.1 Completa con el posesivo", items:[
+   ["I have a car. ___ car is red.",[["my"]]],["She has a brother. ___ brother is 10.",[["her"]]],
+   ["He has a dog. ___ dog is big.",[["his"]]],["We have a house. ___ house is small.",[["our"]]],
+   ["They have two children. ___ children are at school.",[["their"]]],["You have a phone. Is this ___ phone?",[["your"]]],
+   ["The cat is hungry. ___ food is in the kitchen.",[["its"]]]]},
+  {t:"3.2 Sujeto, objeto o posesivo: elige", items:[
+   ["This is Laura. {She|Her} is {my|me} friend.",["She","my"]],
+   ["I know Peter, but I don't know {his|him} sister.",["his"]],
+   ["{We|Our} teacher is very nice. We like {she|her}.",["Our","her"]],
+   ["They live with {their|them} parents.",["their"]]]}]},
+ {id:"pronombres2", title:"Pronombres · nivel 2", tip:`<div class="tbl"><table>
+  <thead><tr><th>Sujeto</th><th>Objeto</th><th>Adj. posesivo</th><th>Pron. posesivo</th></tr></thead>
+  <tbody><tr><td>I</td><td>me</td><td>my</td><td>mine</td></tr><tr><td>you</td><td>you</td><td>your</td><td>yours</td></tr>
+  <tr><td>he</td><td>him</td><td>his</td><td>his</td></tr><tr><td>she</td><td>her</td><td>her</td><td>hers</td></tr>
+  <tr><td>it</td><td>it</td><td>its</td><td>—</td></tr><tr><td>we</td><td>us</td><td>our</td><td>ours</td></tr>
+  <tr><td>they</td><td>them</td><td>their</td><td>theirs</td></tr></tbody></table></div>
+  <p>El <b>adjetivo</b> va siempre con un nombre: <i>It's <b>my</b> book.</i> El <b>pronombre</b> sustituye al nombre: <i>It's <b>mine</b>.</i> Ojo: <i>its</i> (su) no lleva apóstrofo; <i>it's</i> = <i>it is</i>.</p>`, ex:[
+  {t:"7.1 Elige la opción correcta", items:[
+   ["That car isn't ours. It's {they|them|their|theirs}.",["theirs"]],
+   ["Can you give {I|me|my|mine} the keys, please?",["me"]],
+   ["{We|Us|Our|Ours} house is bigger than {they|them|their|theirs}.",["Our","theirs"]],
+   ["Sara lost {she|her|hers|his} phone. Is this one {she|her|hers|its}?",["her","hers"]],
+   ["My brother and {I|me|my|mine} go to the same school.",["I"]],
+   ["This isn't your coffee. {You|Your|Yours|It's} is on the table.",["Yours"]],
+   ["The dog is eating {it|its|it's|their} food.",["its"]],
+   ["Please call {we|us|our|ours} tomorrow.",["us"]],
+   ["Whose book is this? Is it {he|him|his|he's}?",["his"]],
+   ["{They|Them|Their|Theirs} don't like {we|us|our|ours} music.",["They","our"]],
+   ["I like your shoes, but I prefer {I|me|my|mine}.",["mine"]],
+   ["This message is for you and {I|me|my|mine}.",["me"]]]},
+  {t:"7.2 Escribe el pronombre (sin opciones)", items:[
+   ["Peter is my friend. I see ___ every day, and ___ sister is my friend too.",[["him"],["his"]]],
+   ["These aren't my keys. ___ are in my bag.",[["mine"]]],
+   ["Anna and I are cousins. ___ mothers are sisters.",[["our"]]],
+   ["Is this your jacket or is it ___? <span class=src>(de ella)</span>",[["hers"]]],
+   ["The children are in the park. Can you see ___?",[["them"]]],
+   ["We love our new flat. The flat is ___.",[["ours"]]],
+   ["My parents sold ___ car, so the car isn't ___ anymore.",[["their"],["theirs"]]],
+   ["Tom, is this phone ___? — Yes, it's ___.",[["yours"],["mine"]]],
+   ["Lucy has a cat. ___ name is Max. Lucy loves ___.",[["its"],["it"]]],
+   ["I don't know ___ <span class=src>(a ellos)</span>, but I know ___ son.",[["them"],["their"]]],
+   ["John and Mary live next to us. ___ house is small, but ___ is big.",[["their"],["ours"]]],
+   ["Excuse me, is this seat ___? <span class=src>(de vosotros)</span>",[["yours"]]]]},
+  {t:"7.3 Reescribe con pronombre posesivo", long:true, items:[
+   ["This is my book. → This book is…",["This book is mine"]],["That is her bag. → That bag is…",["That bag is hers"]],
+   ["These are our tickets. → These tickets are…",["These tickets are ours"]],["Is this your car? → Is this car…?",["Is this car yours"]],
+   ["Those are their dogs. → Those dogs are…",["Those dogs are theirs"]],["This is his phone. → This phone is…",["This phone is his"]]]},
+  {t:"7.4 Escribe la frase sustituyendo nombres por pronombres", long:true, items:[
+   ["Maria gives the book to Tom.",["She gives the book to him","She gives it to him"]],
+   ["My friends and I visit Laura's parents.",["We visit her parents"]],
+   ["Peter loves Anna's cat.",["He loves her cat"]],
+   ["The teacher talks to the students.",["She talks to them","He talks to them"]],
+   ["This is John's house, not Sara's house.",["This is his house not hers"]]]}]},
+ {id:"todo", title:"El verbo to do", ex:[
+  {t:"5.1 Completa con do o does", items:[
+   ["I ___ my homework every day.",[["do"]]],["She ___ yoga on Mondays.",[["does"]]],["We ___ the shopping on Saturday.",[["do"]]],
+   ["He ___ the dishes after dinner.",[["does"]]],["They ___ sport at school.",[["do"]]],["My mother ___ exercise in the morning.",[["does"]]],
+   ["You ___ a lot of work.",[["do"]]],["The children ___ their homework in the evening.",[["do"]]]]},
+  {t:"5.2 Completa con don't o doesn't", items:[
+   ["I ___ do sport.",[["don't"]]],["He ___ do his homework.",[["doesn't"]]],["We ___ do the dishes on Sunday.",[["don't"]]],
+   ["She ___ do yoga.",[["doesn't"]]],["They ___ do the shopping.",[["don't"]]],["My brother ___ do exercise.",[["doesn't"]]]]},
+  {t:"5.3 Pasa a negativa", long:true, items:[
+   ["I do my homework.",["I don't do my homework"]],["She does the shopping.",["She doesn't do the shopping"]],
+   ["They do sport.",["They don't do sport"]],["He does the dishes.",["He doesn't do the dishes"]],["We do yoga.",["We don't do yoga"]]]},
+  {t:"5.4 Pasa a pregunta", long:true, items:[
+   ["You do your homework.",["Do you do your homework"]],["He does exercise.",["Does he do exercise"]],
+   ["They do the shopping.",["Do they do the shopping"]],["She does yoga.",["Does she do yoga"]],["We do the dishes.",["Do we do the dishes"]]]},
+  {t:"5.5 Respuesta corta", items:[
+   ["Do you do sport? → Yes, ___.",[["I do"]]],["Does she do her homework? → No, ___.",[["she doesn't"]]],
+   ["Do they do the shopping? → Yes, ___.",[["they do"]]],["Does he do yoga? → No, ___.",[["he doesn't"]]],
+   ["Do we do a test today? → Yes, ___.",[["we do","you do"]]]]},
+  {t:"5.6 Corrige el error", long:true, items:[
+   ["She don't do her homework.",["She doesn't do her homework"]],["Does he does sport?",["Does he do sport"]],
+   ["I doesn't do the dishes.",["I don't do the dishes"]],["Do she do yoga?",["Does she do yoga"]],["They does the shopping.",["They do the shopping"]]]}]},
+ {id:"ayudante", title:"Do como ayudante", tip:"Afirmativa sin <i>do</i>: <b>She likes apples.</b> Para negar o preguntar hace falta <i>do/does</i>, y la -s se la queda <i>does</i>: <b>She doesn't like</b> · <b>Does she like…?</b> Ojo: <i>to be</i> y <i>can</i> no usan <i>do</i>.", ex:[
+  {t:"6.1 Escribe el verbo en la forma correcta", items:[
+   ["She ___ chocolate. <span class=src>(like)</span>",[["likes"]]],["I ___ football. <span class=src>(play)</span>",[["play"]]],
+   ["He ___ in an office. <span class=src>(work)</span>",[["works"]]],["We ___ in Barcelona. <span class=src>(live)</span>",[["live"]]],
+   ["My sister ___ French. <span class=src>(speak)</span>",[["speaks"]]],["They ___ fish on Fridays. <span class=src>(eat)</span>",[["eat"]]]]},
+  {t:"6.2 Pasa a negativa", long:true, items:[
+   ["I like apples.",["I don't like apples"]],["She likes coffee.",["She doesn't like coffee"]],["They play tennis.",["They don't play tennis"]],
+   ["He works on Sundays.",["He doesn't work on Sundays"]],["We watch TV.",["We don't watch TV"]],["My father drives a car.",["My father doesn't drive a car"]]]},
+  {t:"6.3 Pasa a pregunta", long:true, items:[
+   ["You like pizza.",["Do you like pizza"]],["He speaks English.",["Does he speak English"]],["They live in Madrid.",["Do they live in Madrid"]],
+   ["She plays the guitar.",["Does she play the guitar"]],["You work here.",["Do you work here"]]]},
+  {t:"6.4 Respuesta corta", items:[
+   ["Do you like dogs? → Yes, ___.",[["I do"]]],["Does he play football? → No, ___.",[["he doesn't"]]],
+   ["Does she speak Italian? → Yes, ___.",[["she does"]]],["Do they eat meat? → No, ___.",[["they don't"]]]]},
+  {t:"6.5 Corrige el error", long:true, items:[
+   ["I not like milk.",["I don't like milk"]],["She doesn't likes tea.",["She doesn't like tea"]],["Do he work here?",["Does he work here"]],
+   ["Does she plays tennis?",["Does she play tennis"]],["Like you music?",["Do you like music"]],["He don't speak English.",["He doesn't speak English"]]]},
+  {t:"6.6 ¿Do / Does o Am / Is / Are?", items:[
+   ["___ you like music?",[["do"]]],["___ you tired?",[["are"]]],["___ she a teacher?",[["is"]]],
+   ["___ she work in a school?",[["does"]]],["___ they from Spain?",[["are"]]],["___ they live in Spain?",[["do"]]]]}]}
+];
+
+const norm = s => s.toLowerCase().replace(/[’`´]/g,"'").replace(/\bdo not\b/g,"don't").replace(/\bdoes not\b/g,"doesn't")
+  .replace(/\bcan not\b|\bcannot\b/g,"can't").replace(/[.,!?¿¡]/g," ").replace(/\s+/g," ").trim();
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const app = document.getElementById("app"), nav = document.getElementById("nav");
+const results = new Map();
+app.innerHTML = ""; nav.innerHTML = "";
+let uid = 0;
+
+SECTIONS.forEach(sec => {
+  nav.insertAdjacentHTML("beforeend", `<a href="#${sec.id}">${sec.title}</a>`);
+  const h = document.createElement("h2"); h.id = sec.id; h.innerHTML = sec.title.replace(/\b(to do|Do)\b/,"<span>$1</span>");
+  app.append(h);
+  sec.ex.forEach(ex => {
+    const box = document.createElement("section"); box.className = "ex";
+    box.innerHTML = `<h3><span>${ex.t}</span><span class="res" aria-live="polite"></span></h3><ol></ol>
+      <div class="actions"><button class="btn" type="button" data-a="check">Corregir</button><button class="btn ghost" type="button" data-a="reset">Borrar</button></div>`;
+    const ol = box.querySelector("ol"); const gaps = [];
+    ex.items.forEach(([tpl, ans]) => {
+      const li = document.createElement("li");
+      if (ex.long) {
+        const id = "g" + (++uid);
+        li.innerHTML = `<label for="${id}">${esc(tpl)}</label><input class="long" type="text" id="${id}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+        gaps.push({kind:"text", el: li.querySelector("input"), ok: ans, show: ans[0] + (/^(do|does|are|is|am|can)\b/i.test(ans[0]) ? "?" : ".")});
+      } else {
+        let i = 0;
+        li.innerHTML = tpl.replace(/___|\{([^}]+)\}/g, (m, opts) => {
+          const id = "g" + (++uid);
+          if (m === "___") return `<input type="text" id="${id}" data-i="${i++}" aria-label="Hueco" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+          return `<span class="choice" role="group" id="${id}" data-i="${i++}">${opts.split("|").map(o=>`<button type="button" aria-pressed="false">${o}</button>`).join("")}</span>`;
+        });
+        li.querySelectorAll("[data-i]").forEach(el => {
+          const a = ans[+el.dataset.i];
+          if (el.tagName === "INPUT") {
+            el.style.width = Math.max(5, a[0].length + 2) + "ch";
+            gaps.push({kind:"text", el, ok: a, show: a[0]});
+          } else {
+            gaps.push({kind:"choice", el, ok: a, show: a});
+            el.addEventListener("click", e => {
+              const b = e.target.closest("button"); if (!b) return;
+              el.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+            });
+          }
+        });
+      }
+      ol.append(li);
+    });
+    const res = box.querySelector(".res");
+    const clearMarks = () => { box.querySelectorAll(".fix").forEach(f=>f.remove()); gaps.forEach(g=>g.el.classList.remove("ok","bad")); res.textContent=""; res.className="res"; };
+    const check = () => {
+      clearMarks(); let good = 0;
+      gaps.forEach(g => {
+        let right;
+        if (g.kind === "text") right = g.ok.some(o => norm(o) === norm(g.el.value));
+        else { const p = g.el.querySelector('[aria-pressed="true"]'); right = !!p && p.textContent === g.ok; }
+        g.el.classList.add(right ? "ok" : "bad");
+        if (right) good++;
+        else g.el.insertAdjacentHTML("afterend", `<span class="fix${g.el.classList.contains("long") ? " block" : ""}">→ ${esc(g.show)}</span>`);
+      });
+      const r = good / gaps.length;
+      res.textContent = `${good} / ${gaps.length}`; res.classList.add(r === 1 ? "good" : r >= .5 ? "mid" : "low");
+      results.set(box, [good, gaps.length]); updateTotal();
+    };
+    const reset = () => { clearMarks(); gaps.forEach(g => g.kind === "text" ? g.el.value = "" : g.el.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed","false"))); results.delete(box); updateTotal(); };
+    box.querySelector('[data-a="check"]').onclick = check;
+    box.querySelector('[data-a="reset"]').onclick = reset;
+    box.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.tagName === "INPUT") check(); });
+    box._check = check; box._reset = reset;
+    app.append(box);
+  });
+});
+function updateTotal(){ let g=0,t=0; results.forEach(([a,b])=>{g+=a;t+=b}); document.getElementById("total").textContent = `${g} / ${t}`; }
+document.getElementById("checkAll").onclick = () => document.querySelectorAll(".ex").forEach(b => b._check());
+document.getElementById("resetAll").onclick = () => document.querySelectorAll(".ex").forEach(b => b._reset());
+</script>
+</body>
+</html>
