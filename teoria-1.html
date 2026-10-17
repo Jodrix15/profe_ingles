@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Inglés">
+<meta name="theme-color" content="#2747c9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Teoría · Ficha 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: apuntes de clase en una columna; cada bloque dice qué ejercicios de la ficha resuelve */
+:root{
+  --paper:#fbfaf6; --sheet:#ffffff; --ink:#1d2433; --muted:#5e6678; --line:#dfe2ea;
+  --accent:#2747c9; --accent-soft:#e8ecfb; --bad:#c42b2b; --ok:#1f7a4a;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ef; --muted:#9aa2b4; --line:#2c3240;
+  --accent:#8ea2ff; --accent-soft:#232b4a; --bad:#ff7d74; --ok:#5fd093; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12151c; --sheet:#1a1e27; --ink:#e7e9ef; --muted:#9aa2b4; --line:#2c3240;
+  --accent:#8ea2ff; --accent-soft:#232b4a; --bad:#ff7d74; --ok:#5fd093; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;padding:0 16px}
+.wrap{max-width:720px;margin:0 auto;padding-block:max(28px,env(safe-area-inset-top)) 64px}
+.volver{display:none;font-size:.95rem;color:var(--accent);text-decoration:none;margin-bottom:12px}
+@media (display-mode: standalone){.volver{display:inline-block}}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.1;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0}
+.sub a{color:var(--accent)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);display:flex;gap:6px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line);margin:18px 0 8px}
+nav a{font-size:.88rem;text-decoration:none;color:var(--ink);padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--sheet)}
+nav a:hover,nav a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+section{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;margin-top:18px;scroll-margin-top:70px}
+h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:0 0 4px}
+.para{display:inline-block;font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 10px;margin-bottom:10px}
+h3{font-size:1rem;margin:16px 0 6px}
+p{margin:0 0 12px;max-width:65ch}
+ul{margin:0 0 12px;padding-left:1.2em}
+li{margin-bottom:4px}
+.tbl{overflow-x:auto;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--accent);font-weight:700;white-space:nowrap}
+td b{color:var(--ink)}
+.no{color:var(--bad);text-decoration:line-through}
+.si{color:var(--ok);font-weight:700}
+.ej{font-style:italic}
+.refrescar{display:none;position:fixed;z-index:20;top:calc(env(safe-area-inset-top, 0px) + 10px);right:calc(env(safe-area-inset-right, 0px) + 12px);
+  font:inherit;font-size:.9rem;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);color:var(--accent);cursor:pointer}
+.refrescar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (display-mode: standalone){.refrescar{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="volver" href="./">‹ Todas las fichas</a>
+  <h1>Teoría · Ficha 1</h1>
+  <p class="sub">Todo lo que hace falta para resolver la <a href="ficha-ingles.html">Ficha 1 · Pronombres y do</a>.</p>
+
+  <nav aria-label="Temas">
+    <a href="#sujeto">Sujeto</a><a href="#objeto">Objeto</a><a href="#posesivos">Posesivos</a>
+    <a href="#todo">To do</a><a href="#ayudante">Do ayudante</a><a href="#be">Be o do</a>
+  </nav>
+
+  <section id="sujeto">
+    <h2>Pronombres sujeto</h2>
+    <span class="para">Ejercicios 1.1 y 1.2</span>
+    <p>Indican <b>quién hace la acción</b> y van delante del verbo. En inglés no se pueden omitir: en español decimos "es profesora", pero en inglés hay que decir <span class="ej">She is a teacher</span>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Inglés</th><th>Español</th></tr></thead>
+      <tbody>
+        <tr><td><b>I</b></td><td>yo (siempre en mayúscula)</td></tr>
+        <tr><td><b>you</b></td><td>tú</td></tr>
+        <tr><td><b>he</b></td><td>él</td></tr>
+        <tr><td><b>she</b></td><td>ella</td></tr>
+        <tr><td><b>it</b></td><td>cosas y animales</td></tr>
+        <tr><td><b>we</b></td><td>nosotros/as</td></tr>
+        <tr><td><b>you</b></td><td>vosotros/as</td></tr>
+        <tr><td><b>they</b></td><td>ellos/as (personas y cosas)</td></tr>
+      </tbody></table></div>
+    <h3>Trucos para sustituir</h3>
+    <ul>
+      <li>Una persona + yo → <b>we</b>: <span class="ej">Tom and I → we</span></li>
+      <li>Tú + otra persona → <b>you</b>: <span class="ej">You and Sara → you</span></li>
+      <li>Varias personas o cosas → <b>they</b>: <span class="ej">My parents → they</span></li>
+      <li>Una cosa o un animal → <b>it</b>: <span class="ej">The book → it</span></li>
+    </ul>
+  </section>
+
+  <section id="objeto">
+    <h2>Pronombres objeto</h2>
+    <span class="para">Ejercicios 2.1, 2.2, 7.1, 7.2 y 7.4</span>
+    <p>Indican <b>quién recibe la acción</b>. Van <b>después del verbo</b> o después de una preposición (<i>with, for, to, at</i>…).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Sujeto</th><th>Objeto</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td><b>me</b></td><td class="ej">Can you help me?</td></tr>
+        <tr><td>you</td><td><b>you</b></td><td class="ej">I talk to you.</td></tr>
+        <tr><td>he</td><td><b>him</b></td><td class="ej">Do you know him?</td></tr>
+        <tr><td>she</td><td><b>her</b></td><td class="ej">I love her.</td></tr>
+        <tr><td>it</td><td><b>it</b></td><td class="ej">I play with it.</td></tr>
+        <tr><td>we</td><td><b>us</b></td><td class="ej">Look at us!</td></tr>
+        <tr><td>they</td><td><b>them</b></td><td class="ej">I like them.</td></tr>
+      </tbody></table></div>
+    <h3>¿Sujeto u objeto?</h3>
+    <ul>
+      <li>Delante del verbo → sujeto: <span class="si">She</span> is my sister.</li>
+      <li>Detrás del verbo o de una preposición → objeto: I call <span class="si">her</span>. Give it to <span class="si">me</span>.</li>
+      <li>Ojo con dos personas: <span class="si">Sara and I</span> are friends (sujeto), pero <span class="ej">for you and</span> <span class="si">me</span> (objeto).</li>
+    </ul>
+  </section>
+
+  <section id="posesivos">
+    <h2>Posesivos</h2>
+    <span class="para">Ejercicios 3.1, 3.2, 7.1, 7.2 y 7.3</span>
+    <p>Hay dos tipos. El <b>adjetivo posesivo</b> va siempre delante de un nombre. El <b>pronombre posesivo</b> va solo, sin nombre, porque lo sustituye.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Sujeto</th><th>Adjetivo</th><th>Pronombre</th><th>Español</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td><b>my</b> book</td><td><b>mine</b></td><td>mi / mío</td></tr>
+        <tr><td>you</td><td><b>your</b> book</td><td><b>yours</b></td><td>tu / tuyo; vuestro</td></tr>
+        <tr><td>he</td><td><b>his</b> book</td><td><b>his</b></td><td>su / suyo (de él)</td></tr>
+        <tr><td>she</td><td><b>her</b> book</td><td><b>hers</b></td><td>su / suyo (de ella)</td></tr>
+        <tr><td>it</td><td><b>its</b> food</td><td>—</td><td>su (de una cosa o animal)</td></tr>
+        <tr><td>we</td><td><b>our</b> book</td><td><b>ours</b></td><td>nuestro</td></tr>
+        <tr><td>they</td><td><b>their</b> book</td><td><b>theirs</b></td><td>su / suyo (de ellos)</td></tr>
+      </tbody></table></div>
+    <ul>
+      <li>Con nombre → adjetivo: <span class="ej">It's</span> <span class="si">my</span> <span class="ej">book.</span> Sin nombre → pronombre: <span class="ej">It's</span> <span class="si">mine</span>.</li>
+      <li>No cambian en plural: <span class="ej">my book, my books</span>.</li>
+      <li>El posesivo depende del <b>dueño</b>, no de la cosa: <span class="ej">Peter's sister →</span> <span class="si">his</span> <span class="ej">sister</span>.</li>
+      <li><b>its</b> = su (posesivo, sin apóstrofo). <b>it's</b> = <i>it is</i>. <span class="no">The dog is eating it's food</span> → <span class="si">its food</span>.</li>
+      <li>Los pronombres nunca llevan apóstrofo: <span class="no">your's, her's</span> → <span class="si">yours, hers</span>.</li>
+    </ul>
+    <h3>Para reescribir frases (7.3)</h3>
+    <p class="ej">This is my book. → This book is <b>mine</b>. &nbsp;·&nbsp; Is this your car? → Is this car <b>yours</b>?</p>
+  </section>
+
+  <section id="todo">
+    <h2>El verbo <i>to do</i> (hacer)</h2>
+    <span class="para">Ejercicios 5.1 a 5.6</span>
+    <p>Con <b>he, she, it</b> se usa <b>does</b>; con el resto, <b>do</b>. Para negar se añade <b>don't / doesn't</b>, y para preguntar se pone <b>Do / Does</b> delante del sujeto. En negativa y pregunta, el verbo principal vuelve a ser <b>do</b>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Afirmativa</th><th>Negativa</th><th>Pregunta</th></tr></thead>
+      <tbody>
+        <tr><th>I / you / we / they</th><td>I do</td><td>I don't do</td><td>Do I do…?</td></tr>
+        <tr><th>he / she / it</th><td>she does</td><td>she doesn't do</td><td>Does she do…?</td></tr>
+      </tbody></table></div>
+    <ul>
+      <li><b>don't</b> = do not · <b>doesn't</b> = does not</li>
+      <li><span class="no">She doesn't does</span> → <span class="si">She doesn't do</span>. <span class="no">Does he does?</span> → <span class="si">Does he do?</span></li>
+      <li>Varias personas (<i>the children, my parents</i>) = <i>they</i> → <b>do</b>.</li>
+    </ul>
+    <h3>Respuestas cortas</h3>
+    <p>Se repite el pronombre y el auxiliar, sin el verbo: <span class="ej">Do you do sport? — Yes, I do. / No, I don't.</span> <span class="ej">Does she…? — Yes, she does. / No, she doesn't.</span></p>
+    <h3>Expresiones con <i>do</i></h3>
+    <p><b>do homework</b> (deberes) · <b>do sport / exercise</b> · <b>do the dishes</b> (fregar) · <b>do the shopping</b> (la compra) · <b>do yoga</b> · <b>do a test</b></p>
+  </section>
+
+  <section id="ayudante">
+    <h2><i>Do</i> como ayudante</h2>
+    <span class="para">Ejercicios 6.1 a 6.5</span>
+    <p>En afirmativa el verbo va solo: <span class="ej">I like apples</span>. Pero para <b>negar o preguntar</b> el inglés necesita un ayudante: <b>do / does</b>. Como ayudante no significa nada y no se traduce.</p>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Afirmativa</th><th>Negativa</th><th>Pregunta</th></tr></thead>
+      <tbody>
+        <tr><th>I / you / we / they</th><td>They play tennis.</td><td>They <b>don't</b> play tennis.</td><td><b>Do</b> they play tennis?</td></tr>
+        <tr><th>he / she / it</th><td>She like<b>s</b> apples.</td><td>She <b>doesn't</b> like apples.</td><td><b>Does</b> she like apples?</td></tr>
+      </tbody></table></div>
+    <h3>La regla de la -s</h3>
+    <ul>
+      <li>En afirmativa, con he/she/it el verbo lleva <b>-s</b>: <span class="ej">he works, she speaks</span>. Si acaba en -o, -sh, -ch, -x, -ss: <b>-es</b> (<span class="ej">goes, watches</span>).</li>
+      <li>En negativa y pregunta, la -s se la queda <b>does</b> y el verbo va sin ella: <span class="no">She doesn't likes</span> → <span class="si">She doesn't like</span>. <span class="no">Does she plays?</span> → <span class="si">Does she play?</span></li>
+      <li>Nunca <span class="no">I not like</span> ni <span class="no">Like you music?</span> → <span class="si">I don't like</span>, <span class="si">Do you like music?</span></li>
+    </ul>
+    <p>El <i>do</i> puede salir dos veces: <span class="ej"><b>Do</b> you <b>do</b> sport?</span> El primero es el ayudante; el segundo significa "hacer".</p>
+  </section>
+
+  <section id="be">
+    <h2>¿<i>Do</i> o <i>to be</i>?</h2>
+    <span class="para">Ejercicio 6.6</span>
+    <p><b>To be</b> y <b>can</b> no usan <i>do</i>: niegan y preguntan solos. Regla rápida: si la frase lleva <i>am / is / are</i> o <i>can</i>, ese verbo hace de ayudante. Si no, se usa <i>do / does</i>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Con to be</th><th>Con otro verbo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Are</b> you tired?</td><td><b>Do</b> you like music?</td></tr>
+        <tr><td><b>Is</b> she a teacher?</td><td><b>Does</b> she work in a school?</td></tr>
+        <tr><td>She <b>isn't</b> here.</td><td>She <b>doesn't</b> live here.</td></tr>
+      </tbody></table></div>
+    <p>Pista: después de <i>tired, a teacher, from Spain</i> no hay verbo de acción → <b>to be</b>. Después de <i>like, work, live</i> sí lo hay → <b>do</b>.</p>
+  </section>
+</div>
+<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});</script>
+<button class="refrescar" type="button" onclick="location.reload()" aria-label="Actualizar la página">↻ Actualizar</button>
+</body>
+</html>
